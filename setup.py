@@ -1,22 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Copyright 2014 Janusz Skonieczny
 
 import os
 import sys
+from setuptools import setup, find_packages
+from pip.req import parse_requirements
+# import pypandoc
 
-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+SRC_DIR = os.path.join(ROOT_DIR, 'src')
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
-requirements = [
-    # TODO: put package requirements here
-]
+requirements = parse_requirements(os.path.join(ROOT_DIR, "requirements.txt"))
+requirements = [str(r.req) for r in requirements]
 
 test_requirements = [
     # TODO: put package test requirements here
@@ -25,21 +24,18 @@ test_requirements = [
 setup(
     name='flask-gae',
     version='0.1.0',
-    description='Lorem ipsum',
+    description='Commons for Flask running on Google App Engine',
     long_description=readme + '\n\n' + history,
     author='Janusz Skonieczny',
     author_email='js@bravelabs.pl',
     url='https://github.com/wooyek/flask-gae',
-    packages=[
-        'flask-gae',
-    ],
-    package_dir={'flask-gae':
-                 'flask-gae'},
+    packages=find_packages("src"),
+    package_dir={'': 'src'},
     include_package_data=True,
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='flask-gae',
+    keywords='flask google app engine',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

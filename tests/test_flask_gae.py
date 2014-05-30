@@ -10,10 +10,8 @@ Tests for `flask-gae` module.
 
 import unittest
 
-from flask-gae import flask-gae
 
-
-class TestFlask-gae(unittest.TestCase):
+class TestFlaskGae(unittest.TestCase):
 
     def setUp(self):
         pass
